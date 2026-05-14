@@ -89,17 +89,17 @@ Clona el repositorio de Strudel y sigue sus instrucciones de instalación:
 git clone https://github.com/tidalcycles/strudel.git
 cd strudel
 npm install
-npm run dev
+pnpm dev
 ```
 
 Strudel quedará disponible en `http://localhost:4321`.
 
 ### Paso 3 — Copiar las visuales a Strudel
 
-Copia el archivo `index.html` de este repositorio a la carpeta pública de Strudel:
+Copia el archivo `visualesFinal.html` de este repositorio a la carpeta pública de Strudel:
 
 ```
-strudel/packages/website/public/index.html
+strudel/website/public/index.html
 ```
 
 Las visuales estarán disponibles en: `http://localhost:4321/index.html`
@@ -112,6 +112,9 @@ Las visuales estarán disponibles en: `http://localhost:4321/index.html`
 4. Haz clic en **+** para crear el puerto
 5. Deja LoopMIDI abierto en segundo plano durante toda la sesión
 
+<img width="728" height="480" alt="Screenshot 2026-05-14 071643" src="https://github.com/user-attachments/assets/f18289f3-9557-4c81-b08f-e5f973f2745a" />
+
+
 ### Paso 5 — Instalar dependencias del bridge
 
 Coloca `bridge.js` y `package.json` en la misma carpeta (puede ser cualquier carpeta, no tiene que estar dentro de Strudel). Desde esa carpeta ejecuta:
@@ -120,7 +123,7 @@ Coloca `bridge.js` y `package.json` en la misma carpeta (puede ser cualquier car
 npm install
 ```
 
-Esto instala `ws` (WebSockets) y `easymidi` (comunicación MIDI), las dos librerías que necesita el bridge.
+Esto instala dependencias.
 
 ### Paso 6 — Iniciar el bridge
 
@@ -137,18 +140,18 @@ Deberías ver en consola:
 
 ### Paso 7 — Abrir las visuales
 
-En Chrome, abre: `http://localhost:4321/index.html`
+En Chrome, abre: `http://localhost:4321/visualesFinal.html`
 
 Acepta los permisos de cámara cuando el navegador los solicite.
 
 ### Paso 8 — Cargar la composición en Strudel
 
-1. En otra pestaña de Chrome, abre: `http://localhost:4321`
+1. En otra pestaña del navegador, abre: `http://localhost:4321`
 2. Abre el archivo `strudel.js` de este repositorio con cualquier editor de texto
 3. Copia todo su contenido
 4. Pégalo en el editor del REPL de Strudel
 5. Acepta los permisos de MIDI cuando el navegador los solicite
-6. Presiona **Ctrl+Enter** para iniciar la música
+6. Presiona **Ctrl+Enter** o botón play para iniciar la música
 
 > `strudel.js` contiene código para el REPL de Strudel, no es un script de Node.js. No ejecutar con `node strudel.js`.
 
