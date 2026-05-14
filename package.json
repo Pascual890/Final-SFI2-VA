@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "easymidi": "^3.2.0",
+    "node-osc": "^11.4.0",
+    "osc": "^2.4.5",
+    "serialport": "^13.0.0",
+    "ws": "^8.20.0"
+  }
+  
+   "notes": "Requiere LoopMIDI corriendo con un puerto llamado exactamente 'StrudelMIDI'"
+
+}

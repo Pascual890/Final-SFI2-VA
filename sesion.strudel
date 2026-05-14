@@ -1,0 +1,40 @@
+// Este archivo se pega completo en el editor de Strudel REPL
+// No ejecutar con Node.js
+
+
+await initAudio()
+const leerPuerto = await midin('StrudelMIDI')
+const cc = (canal) => leerPuerto(canal)
+setcpm(50)
+
+// --- CONTROLES
+let d_vol = cc(10).range(0, 0.8)
+let d_vel = cc(11).range(1, 2).round()
+let h_vol = cc(12).range(0, 0.5)
+let h_vel = cc(13).range(1, 2).round()
+let b_vol   = cc(14).range(0.3, 0.8)
+let b_octva = cc(15).range(0, 1).round().mul(-12)
+let a_atmos = cc(16).range(0, 0.8)
+let a_vel   = cc(17).range(1, 2).round()
+
+// --- KICK
+let kick = s("<bd [bd ~] [bd ~] [bd bd:2]>").bank("Linn9000").gain(d_vol).fast(d_vel)
+
+// --- SNARE
+let snare = s("<[~ sd] [~ sd:2] [~ sd] [~ sd ~ sd:0]>").bank("Linn9000").gain(d_vol.mul(0.9)).fast(d_vel)
+
+// --- HATS
+let hats = s("<[hh hh hh hh] [hh hh hh:1 hh] [hh hh hh hh:1] [hh hh:1 hh hh]>").bank("Linn9000").gain(h_vol).fast(h_vel)
+
+// --- BAJO
+let bajo = note("<[g2 ~ d2 ~] [c2 ~ g2 ~] [e2 ~ b2 ~] [d2 ~ a2 ~] [g2 ~ f2 ~] [c2 ~ e2 ~] [d2 ~ c2 d2] [g2 ~ ~ ~]>").sound("piano").transpose(b_octva).gain(b_vol).room(0.6).lpf(900).legato(0.85)
+
+// --- MELODÍA
+let arpegio = note("<[g4 b4 d5 ~] [c5 e5 g5 e5] [d5 ~ b4 g4] [f4 a4 c5 ~] [g4 d5 ~ b4] [e5 d5 b4 g4] [c5 ~ g4 a4] [b4 d5 g5 ~]>").sound("square").lpf(900).gain(0.18).delay(a_atmos).delayfeedback(a_atmos.mul(0.75)).delaytime(0.375).room(0.55).fast(a_vel).jux(rev)
+
+// --- EJECUCIÓN
+$: stack(kick, kick.osc())
+$: stack(snare, snare.osc())
+$: stack(hats, hats.osc())
+$: stack(bajo, bajo.osc())
+$: stack(arpegio, arpegio.osc())
