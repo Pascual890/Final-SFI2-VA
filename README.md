@@ -4,6 +4,55 @@ Un instrumento audiovisual en tiempo real controlado por gestos de mano. Cuatro 
 
 ---
 
+# Órbita Reactiva: Instrumento Audiovisual
+> **Proyecto Final Integrado:** Visión Artificial + Sistemas Físicos Interactivos 2
+
+Un instrumento audiovisual bidireccional en tiempo real: el cuerpo modifica el sonido y el sonido modifica el espacio visual. Cuatro orbes representan las capas de la composición (kick/snare, hats, bajo, arpegio) y responden a la posición de las manos utilizando Machine Learning directamente en el navegador.
+
+---
+
+## 1. Referentes e Inspiración
+
+El diseño surge como una solución para integrar dos requerimientos técnicos (programación musical y visión artificial), con el objetivo de lograr una experiencia similar a los sistemas de interacción gestual utilizados en el arte digital:
+
+* **Mi.Mu Gloves (Imogen Heap):** Guantes que mapean gestos de la mano a parámetros de producción musical en vivo. El proyecto adopta esta premisa de control gestual expresivo, pero elimina la necesidad de hardware físico complejo, utilizando en su lugar una cámara web estándar y modelos de Machine Learning (HandPose).
+
+---
+
+## 2. Justificación del Diseño y la Interacción
+
+La premisa principal es ofrecer una experiencia intuitiva donde el movimiento corporal actúe como protagonista, garantizando que la sesión mantenga una estructura musical coherente y agradable.
+
+* **Cámaras vs. Sensores Físicos:** Se opta por visión artificial basada en cámaras en lugar de tecnologías de lectura biométrica (como diademas EEG) o interfaces físicas porque captura la expresión corporal completa de forma natural. Esto hace que la ejecución sea clara y la relación causa-efecto sea evidente para el espectador.
+* **Interfaz Orgánica (Orbes):** Se descartan las interfaces gráficas tradicionales. Los orbes actúan como una tabla MIDI espacial. Moverlos en los ejes X/Y equivale a ajustar parámetros en una consola de audio, pero de forma fluida y con límites preestablecidos.
+* **Mecanismo de Interacción:** * **Puño cerrado:** Gravedad y atracción (control global de todos los orbes).
+  * **Pellizco:** Agarre de precisión (control individual del orbe más cercano).
+  * **Mano abierta:** Escucha y reposo (el sistema no se altera).
+
+---
+
+## 3. Estética y Generación Visual
+
+El contenido visual funciona como un reflejo directo del estado del sistema musical, creando un ciclo de retroalimentación constante entre la imagen y el sonido.
+
+* **Respuesta Visual Inmediata:** Cada evento de audio en el secuenciador Strudel genera un pulso expansivo en su orbe correspondiente a través de p5.js.
+* **Fondo Reactivo:** El color del fondo no es estático. Su matiz está vinculado a la posición del orbe del bajo, de modo que los cambios en las octavas alteran la atmósfera visual de toda la pantalla.
+* **Decisión Musical:** Se emplea una composición con un tempo moderado y espacios marcados. Una pista demasiado rápida ocultaría los cambios gestuales del usuario, impidiendo percibir cómo la interacción altera el sonido.
+
+---
+
+## 4. Desafíos del Proceso y Soluciones
+
+El desarrollo implicó resolver retos técnicos de comunicación de datos y problemas de usabilidad para evitar una experiencia de usuario frustrante:
+
+* **El Puente Bidireccional:** El navegador (p5.js) y Strudel no pueden enviarse mensajes MIDI directamente. Este obstáculo se soluciona construyendo un servidor intermediario en Node.js (OSC Bridge) que traduce los eventos de sonido de Strudel a animaciones visuales, y los movimientos de la mano a parámetros de audio.
+* **Control del Caos Musical:** Inicialmente, se buscaba que cada dedo y posición de la mano alteraran la música de forma directa. Sin embargo, esto generaba una descoordinación total y volvía la pista disonante. Además, obligaba al usuario a mantener la mano tensa frente a la cámara en todo momento, ya que al quitarla los valores se descontrolaban.
+* **Implementación del Sistema de Orbes:** Para dar solución al desorden musical, se abandona el mapeo directo de las articulaciones en favor de los orbes. Estos funcionan como anclas espaciales. Al interactuar con ellos, el sistema establece límites seguros a los parámetros que llegan a Strudel. Esto permite soltar un orbe, bajar la mano o salir del rango de la cámara sin generar saltos bruscos en el audio, logrando un instrumento fácil de aprender y musicalmente estable.
+
+
+
+
+
 ## Sección 1 — Diagrama del sistema
 
 ```mermaid
