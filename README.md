@@ -197,11 +197,11 @@ En las visuales deberías ver:
 
 ### Cómo funciona cada componente
 
-**Strudel REPL** es el motor de síntesis y secuenciación. Genera patrones de audio usando mini-notation (un lenguaje de patrones cíclicos) y los sintetiza en el navegador usando Web Audio API. La función `.osc()` duplica cada patrón y lo envía como mensaje OSC por WebSocket, lo que permite que el sistema de visuales sepa exactamente cuándo ocurre cada evento de audio.
+**Strudel REPL** es el motor de secuenciación. Genera patrones de audio usando mini-notation (un lenguaje de patrones cíclicos) y los sintetiza en el navegador usando Web Audio API. La función `.osc()` duplica cada patrón y lo envía como mensaje OSC por WebSocket, lo que permite que el sistema de visuales sepa exactamente cuándo ocurre cada evento de audio.
 
-**El bridge (bridge.js)** es el sistema nervioso del proyecto. Opera en dos direcciones simultáneas: recibe los eventos OSC de Strudel (qué sample suena y cuándo) y los retransmite a las visuales; y recibe las posiciones de los orbes desde las visuales y las convierte a mensajes CC MIDI que Strudel puede leer como parámetros de control.
+**El bridge (bridge.js)** Opera en dos direcciones simultáneas: recibe los eventos OSC de Strudel (qué sample suena y cuándo) y los retransmite a las visuales; y recibe las posiciones de los orbes desde las visuales y las convierte a mensajes CC MIDI que Strudel puede leer como parámetros de control.
 
-**Las visuales (p5.js + ml5)** son el instrumento físico. El canvas muestra cuatro orbes que representan las capas de la composición. ml5 HandPose ejecuta un modelo de detección de manos en tiempo real usando la cámara, identificando 21 puntos de articulación. Los gestos se determinan calculando la distancia promedio de los dedos a la muñeca (puño) y la distancia entre pulgar e índice (pellizco).
+**Las visuales (p5.js + ml5)** son el instrumento físico. El canvas muestra cuatro orbes que representan las capas de la composición. ml5 HandPose ejecuta un modelo de detección de manos en tiempo real usando la cámara, identificando puntos de articulación. Los gestos se determinan calculando la distancia promedio de los dedos a la muñeca (puño) y la distancia entre pulgar e índice (pellizco).
 
 **LoopMIDI** crea un bus MIDI virtual en el sistema operativo que permite que el bridge (Node.js) y Strudel (navegador) se comuniquen por MIDI sin hardware físico. Sin él, no hay forma de que un proceso de Node.js envíe mensajes MIDI que el navegador pueda recibir.
 
