@@ -1,13 +1,7 @@
-# Final SFI2 y VA
-
-Un instrumento audiovisual en tiempo real controlado por gestos de mano. Cuatro orbes representan las capas de la composición (kick/snare, hats, bajo, arpegio) y responden al audio y a la posición de la mano en el espacio. Mover los orbes modifica parámetros de la música en vivo; la música modifica las visuales en tiempo real.
-
----
-
 # Órbita Reactiva: Instrumento Audiovisual
 > **Proyecto Final Integrado:** Visión Artificial + Sistemas Físicos Interactivos 2
 
-Un instrumento audiovisual bidireccional en tiempo real: el cuerpo modifica el sonido y el sonido modifica el espacio visual. Cuatro orbes representan las capas de la composición (kick/snare, hats, bajo, arpegio) y responden a la posición de las manos utilizando Machine Learning directamente en el navegador.
+Un instrumento audiovisual en tiempo real controlado por gestos de mano. Cuatro orbes representan las capas de la composición (kick/snare, hats, bajo, arpegio) y responden al audio y a la posición de la mano en el espacio. Mover los orbes modifica parámetros de la música en vivo, la música modifica las visuales en tiempo real.
 
 ---
 
